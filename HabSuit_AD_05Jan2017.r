@@ -31,23 +31,23 @@ sgdf_PW<-sgdf.Max ##Recreate sgdf similar to sgdf.Max, but only considering (mea
 	PW.r<-raster(sgdf_PW)
 
 
-##working on it...	
+##working on it - for 1 raster only
+
 for (i in 1:length(SpToler$Sci_Name)){ 
+	##define tolerances
+	low<-SpToler$Min_TempC[i]
+	high<-SpToler$Max_TempC[i]
 
-##define tolerances
-low<-SpToler$Min_TempC[i]
-high<-SpToler$Max_TempC[i]
+	##reclassify raster into binary
+	threshold <- c(-Inf, low, 0,  low, high, 1,  high, Inf, 0)
+	tmat <- matrix(threshold, ncol=3, byrow=TRUE)
+	Toler.rast <- reclassify(PW.r, tmat)
 
-##reclassify raster into binary
-threshold <- c(-Inf, low, 0,  low, high, 1,  high, Inf, 0)
-tmat <- matrix(threshold, ncol=3, byrow=TRUE)
-Toler.rast <- reclassify(PW.r, tmat)
-
-##plotting results
-plotName <- paste0(unlist(strsplit(as.character(SpToler$Sci_Name[i])," ")), collapse = "_",'.png')
-plotTitle <- paste0('Suitability for ', SpToler$Sci_Name[i])
-png(filename = file.path(file.path(baseDir, 'plots/TaxaSuitability', plotName)), width = plotResX , height = plotResY)
-plot(Toler.rast,main=plotTitle)
+	##plot results
+	plotName <- paste0(unlist(strsplit(as.character(SpToler$Sci_Name[i])," ")), collapse = "_",'.png')
+	plotTitle <- paste0('Suitability for ', SpToler$Sci_Name[i])
+	png(filename = file.path(file.path(baseDir, 'plots/TaxaSuitability', plotName)), width = plotResX , height = plotResY)
+	plot(Toler.rast,main=plotTitle)
 }
 
 
