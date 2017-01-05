@@ -17,7 +17,6 @@ SpToler<-read.csv(file.path(baseDir, 'taxaData/Species_Tolerances.csv'))
 ##models
 ff<-list.files(path = file.path(baseDir, 'rData')) 
 
-
 ###still need to loop all of this...
 MAX<-F #set to T if want max temp instead of mean...
 
@@ -59,15 +58,17 @@ for (i in 1:length(SpToler$Sci_Name)){
 	
 	#combine
 	combRast<-rastTemp*rastSal
-
+	print(combRast) ##check max/mins?
 	##plot results
-	plotName <- paste0(unlist(strsplit(as.character(SpToler$Sci_Name[i])," ")), collapse = "_",'.png')
+	plotName <- paste0(paste0(unlist(strsplit(as.character(SpToler$Sci_Name[i])," ")),collapse = "_"),'.png')
 	plotTitle <- paste0('Suitability for ', SpToler$Sci_Name[i])
 	png(filename = file.path(file.path(baseDir, 'plots/TaxaSuitability', plotName)), width = plotResX , height = plotResY)
-	plot(Toler.rast,main=plotTitle)
+	plot(combRast,main=plotTitle,breaks=c(0,0.5,1),col=c("lavender","goldenrod1"),ext=e)
+	
 }
 
 
+rm(lowT,highT,thresT,Tmat,thresS,Smat,rastSal,combRast)
 
 
 
@@ -75,14 +76,12 @@ for (i in 1:length(SpToler$Sci_Name)){
 ################################		
 ############JUNK################
 ################################
-
 ##try using reclassify
 # all values >= 0 and <= 0.25 become 1, etc.
 threshold <- c(-Inf, low, 0,  low, high, 1,  high, Inf, 0)
 tmat <- matrix(threshold, ncol=3, byrow=TRUE)
 Toler.rast <- reclassify(PW.r, tmat)
 plot(Toler.rast)
-
 ##raster calc
 low<-11
 high<-16
