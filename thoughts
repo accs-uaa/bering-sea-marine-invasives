@@ -1,0 +1,14 @@
+January 5 2017
+
+For habitat suitability, consider: a) SURVIVAL and b) ESTABLISHMENT requirements
+
+For a), take min/max temperature (any life stage)*** need to make sure there isn't a case where e.g. repro. min is lower than overall min.
+Calculate habt. suitability based on temp x salinity for 1. winter and 2. summer
+For each season and for each pixel, calculate mean value and ((AVERAGE MAX))** HOW IS APPLY FUNCTION DOING THIS?
+"Intersect" mean with avg. max maps, if EITHER gives a 1 (suitable), give final map a 1 --> take most "conservative" approach (in this case, assume the worst)
+
+Can either produce one map for 1. winter and one for 2. summer, OR combine both of them... Though in this case not sure what intersection rules would be...
+
+PROBLEMS TO RESOLVE:
+- When using apply to obtain max values, get warnings():
+ddPW_max <- data.frame(apply(ddPrimeWeeks, 1, max, na.rm=TRUE))
