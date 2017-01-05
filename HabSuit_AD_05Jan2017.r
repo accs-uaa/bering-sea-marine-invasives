@@ -33,12 +33,21 @@ sgdf_PW<-sgdf.Max ##Recreate sgdf similar to sgdf.Max, but only considering (mea
 
 ##working on it...	
 for (i in 1:length(SpToler$Sci_Name)){ 
+
+##define tolerances
 low<-SpToler$Min_TempC[i]
 high<-SpToler$Max_TempC[i]
+
+##reclassify raster into binary
 threshold <- c(-Inf, low, 0,  low, high, 1,  high, Inf, 0)
 tmat <- matrix(threshold, ncol=3, byrow=TRUE)
 Toler.rast <- reclassify(PW.r, tmat)
-plot(Toler.rast,main=paste0('Suitability for ', SpToler$Sci_Name[i]))
+
+##plotting results
+plotName <- paste0(unlist(strsplit(as.character(SpToler$Sci_Name[i])," ")), collapse = "_",'.png')
+plotTitle <- paste0('Suitability for ', SpToler$Sci_Name[i])
+png(filename = file.path(file.path(baseDir, 'plots/TaxaSuitability', plotName)), width = plotResX , height = plotResY)
+plot(Toler.rast,main=plotTitle)
 }
 
 
