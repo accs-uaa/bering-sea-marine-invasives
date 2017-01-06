@@ -4,7 +4,7 @@
 ##start up requirements
 require(dplyr)
 require(lattice)
-##Lattice set up
+##lattice set up
 panel.mean <- function(x, y, ...) {
 	cat('Mean', fill =T)
     tmp <- tapply(x, y, FUN = mean); print(tmp)
@@ -13,35 +13,42 @@ panel.mean <- function(x, y, ...) {
 cexFactor = 1
 
 #read files
-SpToler<-read.csv(file.path(baseDir, 'taxaData/Species_Tolerances.csv'))
+SpTolerNA<-read.csv(file.path(baseDir, 'taxaData/Species_Tolerances.csv'))
 ##models
-ff<-list.files(path = file.path(baseDir, 'rData')) 
+ff<-as.data.frame(list.files(path = file.path(baseDir, 'rData')))
+ff.sub<-as.character(ff[7:8,]) ##load only 1994-2004 data  
 
-###still need to loop all of this...
-MAX<-F #set to T if want max temp instead of mean...
-
-for(i in 1:ff[c(3,4)]){ ##load only hindcast sal and temp  
-	f = ff[i] 
-	cat('=== Handling ===', f, fill =T) 
+MAX<-TRUE #set to T for max temp instead of mean...
+####Jamie suggested using avg. max. temp would be better than absolute max (because models aren't perfect)
+for(i in 1:length(ff.sub)){ 
+	f = ff.sub[i] 
 	load(file.path(baseDir, 'rData', f))
 	ddPrimeWeeks<-tbl_df(sgdf.Max@data[, substring(names(sgdf.Max@data), 6,7) %in% as.character(20:40)]) ##sets weeks of interest 20-40
-	sgdf_PW<-sgdf.Max ##creating prime week subset
-	
+	sgdf_PW<-sgdf.Max ##create prime week subset
 	if(MAX){
-		ddPW_max <- data.frame(meanPW = apply(ddPrimeWeeks, 1, max, na.rm=TRUE)) ## Take the max across the prime weeks.
+		ddPW_max <-  ## Take the max across the prime weeks.
 		sgdf_PW@data <- ddPW_max	
 	}else{
 		ddPW_mean <- data.frame(meanPW = apply(ddPrimeWeeks, 1, mean, na.rm=TRUE)) ## Take the mean across the prime weeks.
 		sgdf_PW@data <- ddPW_mean
 	}
-	PW.sal<-raster(sgdf_PW) ##how to have for loop name files differently...
+	if(length(grep("sal", f))>0){
+	PW.sal<-raster(sgdf_PW)
+	}else{
+	PW.temp<-raster(sgdf_PW)
+	}
 }
 plot(PW.temp)
 plot(PW.sal)
 
+##getting warnings() with ddPW_max
 
-##working on it...	
+##Prime Week suitability for species	
+#get rid of tolerance NAs
+SpToler<-subset(SpTolerNA,(!is.na(Min_TempC)&!is.na(Max_TempC)&!is.na(Min_Salinity)&!is.na(Max_Salinity)))
+
 for (i in 1:length(SpToler$Sci_Name)){ 
+	cat('=== Handling ===', SpToler$Sci_Name[i], fill =T)
 	##define tolerances
 	lowT<-SpToler$Min_TempC[i]
 	highT<-SpToler$Max_TempC[i]
@@ -61,12 +68,13 @@ for (i in 1:length(SpToler$Sci_Name)){
 	print(combRast) ##check max/mins?
 	##plot results
 	plotName <- paste0(paste0(unlist(strsplit(as.character(SpToler$Sci_Name[i])," ")),collapse = "_"),'.png')
-	plotTitle <- paste0('Suitability for ', SpToler$Sci_Name[i])
-	png(filename = file.path(file.path(baseDir, 'plots/TaxaSuitability', plotName)), width = plotResX , height = plotResY)
-	plot(combRast,main=plotTitle,breaks=c(0,0.5,1),col=c("lavender","goldenrod1"),ext=e)
+	plotTitle <- paste0('Summer suitability for ', SpToler$Sci_Name[i])
+	png(filename = file.path(file.path(baseDir, 'plots/TaxaSuitability/Summer', plotName)), width = plotResX , height = plotResY)
+	plot(combRast,main=plotTitle,breaks=c(0,0.5,1),col=c("lavender","goldenrod1"),ext=e,
+		xaxt='n', yaxt='n', bty='n')
 	
 }
-
+dev.off()
 
 rm(lowT,highT,thresT,Tmat,thresS,Smat,rastSal,combRast)
 
