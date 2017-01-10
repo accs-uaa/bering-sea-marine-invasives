@@ -1,3 +1,8 @@
+###Can use this code to create overall taxa suitability map
+###For each species, combine temp. & salinity rasters to generate overall suitability
+###Sum of all species' rasters to figure out how many species can establish in each pixel
+###Might want to add seasonal component here? Double-check if min/max of salinity is seasonal like temp.
+
 ###for each taxa, create winter (min) and summer (max) suitability for a) temp and b) salinity
 
 ##lattice set up
