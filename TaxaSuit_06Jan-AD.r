@@ -48,7 +48,7 @@ for (i in 1:length(SpToler$Sci_Name)){
 	
 	}
 	
-rm(rMaxTemp,rMinTemp,thres.temp,Tmat,i,lowT,highT,plotName,plotTitle)
+#rm(rMaxTemp,rMinTemp,thres.temp,Tmat,i,lowT,highT,plotName,plotTitle) #do not delete if combining temp & salinity
 
 ##repeat for salinity
 SpToler<-subset(SpTolerNA,(!is.na(Min_Salinity)&!is.na(Max_Salinity)))
