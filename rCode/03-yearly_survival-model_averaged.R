@@ -80,4 +80,5 @@ writeRaster(ensemble.clip, fileWrite, format = "GTiff",overwrite=TRUE)
 rm(ensembleSurvival,CountSurvival,ensemble.clip,fileName,fileWrite,taxon,sp,m,i,f,nSurvival)
 }
 
-#rm(spp,mm,taxa,output,ff)
+#workspace clean-up
+rm(spp,mm,taxa,output,ff,criteria,r,period_i,model_i)
