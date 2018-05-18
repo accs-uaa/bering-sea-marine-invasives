@@ -1,0 +1,40 @@
+---
+title: "HeatMapPlottingOfWeeklyVLatBandSurvial"
+author: "A Fischbach"
+date: "May 17, 2018"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+  library(dplyr)
+  library(tidyr)
+  library(ggplot2)
+```
+
+## Load the data  
+The dat.frame df_ee was built by the .\rCode\HeatMap_weeklySurvival.r script, which georaphically summarized weekly survival into 1 degree latitudinal bands for all taxa, modeles across study years within each study period.
+
+```{r}
+  load("~/Rcode/sea-invaders/rData/week_survival_lat_taxa_model_studyPeriod.rData")
+  glimpse(df_ee)
+```
+
+## Reshape the data into a column for weeks, a column for latidudinal bands, and the columns for the taxa, model and study period.
+```{r Reshape}
+    df_tidy <- df_ee %>%
+            gather(key = Week, value = survival, -taxa, -model, -studyPeriodOne, -lat)
+    df_tidy$Week <- as.numeric(substr(df_tidy$Week, start = 6, stop = 7))
+    df_tidy$lat <- as.numeric(df_tidy$lat)
+  glimpse(df_tidy)
+```
+
+## Explore plots
+```{r}
+  library(ggplot2)
+  ggplot(data= df_tidy[, c('Week', 'lat', 'survival')], aes(Week, lat, survival)) + geom_tile(aes(fill = survival)) + 
+    theme_bw() + 
+    scale_fill_gradient(low="white", high="blue") 
+```
