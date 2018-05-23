@@ -7,49 +7,32 @@ require(rgdal)
 require(dplyr)
 prj <- "+proj=aeqd +lat_0=55 +lon_0=190 +x_0=0 +y_0=0 +ellps=WGS84 +units=m +no_defs"
 prj.geo <- "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"
-# # Build latitudinal bands in sp
-# South <- 45
-# North <- 66 
-# gg <- data.frame(south_lat = seq(from = South, to = North-1, by = 1), north_lat = seq(from = South+1, to = North, by = 1))
-# gg$geohash <- as.integer(rownames(gg))
-# gg$east_lng <- -150
-# gg$west_lng <- 160
 
 
-## build function to create many small line segments from west to east for each row...
-## Thanks to https://stackoverflow.com/questions/44335246/polygons-from-coordinates
-# lst <- lapply(1:nrow(gg), function(x){
-  # ## create a matrix of coordinates that also 'close' the polygon
-  # res <- matrix(c(gg[x, 'west_lng'], gg[x, 'south_lat'], 
-				# gg[x, 'east_lng'], gg[x, 'south_lat'],
-				# gg[x, 'east_lng'], gg[x, 'north_lat'],
-				# gg[x, 'west_lng'], gg[x, 'north_lat'],
-				# gg[x, 'west_lng'], gg[x, 'south_lat'])  ## need to close the polygon
-         # , ncol =2, byrow = T
-  # )
-  # ## create polygon objects
-  # # st_polygon(list(res))
-  # makePoly(res, interval = 100000)
-  # }
-# )
-# #
+### Load data files 
+
+# Read in latitudinal band file
+# The file was derived from Natural Earth's 1 degree graticules 
+#(https://www.naturalearthdata.com/downloads/10m-physical-vectors/10m-graticules/). We transformed the latitude lines into polygons. This required manual editing in ArcGIS because we originally obtained odd results when converting lines to polygons across the international date line.
 latGrid <- spTransform( readOGR("D:/HelpingOthers/droghini/sea-invaders/GIS/zonestats/final_poly_zonal.shp"), 
-				 prj
-				 )
-# Read in the shelfRater (1 = 				 
+				 prj)
+# Read in our study area shapefile (Bering Sea shelf)	
+# File is coded as 1 = shelf, 0 = non-shelf (deep water or land)		 
 load('D:/HelpingOthers/droghini/sea-invaders/GIS/shelfRast.rData')				 
 # ## st_sfc : creates simple features collection
 ## st_sf : creates simple feature object
 plot(shelfRast)
 plot(latGrid, add =T)
-# plot(s_y_OK[[1]], add = T)
-# plot(latGrid, add =T)
 
+# Load taxa data
+# Output from 02-analysis-habitat_suitability.R
 baseDir <- "D:/HelpingOthers/droghini/sea-invaders"
-dataDir <- file.path(baseDir, "rOut/SurvivalWeeks_which")
+dataDir <- file.path(baseDir, "rOut/SurvivalWeeks_which") 
 ff <- list.files(dataDir, full.names = T )
+
+### Determine weekly survival by latitude
 maxWeeks <- 53
-for(f in ff){ ## debugging [10:13]
+for(f in ff){ 
 	#f <- ff[10]
 	cat(f, fill = T)
 	load(f)
@@ -57,8 +40,9 @@ for(f in ff){ ## debugging [10:13]
 	# multiplying the s_y_OK raster by the shelfRast raster that has a 0 for non-shelf pixels
 	#ee <- extract(s_y_OK*shelfRast, latGrid, fun = mean, na.rm =T)
 	ee <- raster::extract(s_y_OK*shelfRast, latGrid, fun = sum, na.rm =T)
+	
 	# Make determination of the presence of 'survival habitat' within this latitudinal band.
-	# If ee > XX cells, we determine that survival habitat exists in this band, for this modeled week
+	# If ee >= 1 pixel, we determine that survival habitat exists in this band, for this modeled week
 	ee[ee < 1] <- 0
 	ee[ee >= 1] <- 1
 	
@@ -78,7 +62,7 @@ for(f in ff){ ## debugging [10:13]
 		df_ee$model <- fsplit[4]
 		y <- as.numeric(substr(x = fsplit[5], start = 1, stop =4))
 		df_ee$year <- y
-		df_ee$studyPeriodOne <- (y < 2020)
+		df_ee$studyPeriodOne <- (y < 2020) #Study periods are: 2003-2012 and 2030-2039
 		
 	} else{		
 		dim(ee)
@@ -96,5 +80,5 @@ for(f in ff){ ## debugging [10:13]
 	}
 }
 save(list = "df_ee", file = file.path(baseDir, '/heatMap/week_survival_lat_taxa_model_studyPeriod.rData'))
-# see PlotHeatMap_weeklySurvial.Rmd for plotting
+# see PlotHeatMap_weeklySurvival.Rmd for plotting
 
