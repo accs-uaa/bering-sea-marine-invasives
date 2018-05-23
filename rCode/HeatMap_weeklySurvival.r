@@ -33,11 +33,11 @@ prj.geo <- "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"
   # }
 # )
 # #
-latGrid <- spTransform( readOGR("D:/HelpingOthers/ABSIlcc/NFWF2016/Models/GIS/zonestats/final_poly_zonal.shp"), 
+latGrid <- spTransform( readOGR("D:/HelpingOthers/droghini/sea-invaders/GIS/zonestats/final_poly_zonal.shp"), 
 				 prj
 				 )
 # Read in the shelfRater (1 = 				 
-load('D:/HelpingOthers/ABSIlcc/NFWF2016/Models/GIS/shelfRast.rData')				 
+load('D:/HelpingOthers/droghini/sea-invaders/GIS/shelfRast.rData')				 
 # ## st_sfc : creates simple features collection
 ## st_sf : creates simple feature object
 plot(shelfRast)
@@ -45,7 +45,7 @@ plot(latGrid, add =T)
 # plot(s_y_OK[[1]], add = T)
 # plot(latGrid, add =T)
 
-baseDir <- "D:/HelpingOthers/ABSIlcc/NFWF2016/Models"
+baseDir <- "D:/HelpingOthers/droghini/sea-invaders"
 dataDir <- file.path(baseDir, "rOut/SurvivalWeeks_which")
 ff <- list.files(dataDir, full.names = T )
 maxWeeks <- 53
@@ -55,7 +55,13 @@ for(f in ff){ ## debugging [10:13]
 	load(f)
 	# remove deep water and land by 
 	# multiplying the s_y_OK raster by the shelfRast raster that has a 0 for non-shelf pixels
-	ee <- extract(s_y_OK*shelfRast, latGrid, fun = mean, na.rm =T)
+	#ee <- extract(s_y_OK*shelfRast, latGrid, fun = mean, na.rm =T)
+	ee <- raster::extract(s_y_OK*shelfRast, latGrid, fun = sum, na.rm =T)
+	# Make determination of the presence of 'survival habitat' within this latitudinal band.
+	# If ee > XX cells, we determine that survival habitat exists in this band, for this modeled week
+	ee[ee < 1] <- 0
+	ee[ee >= 1] <- 1
+	
 	cat(nc <- ncol(ee), fill =T) ## should be 15 rows of 50 columns
 	if(nc < maxWeeks){
 		matrixExtra <- matrix(data = NA, nrow = 16, ncol = (maxWeeks - nc))
@@ -71,6 +77,7 @@ for(f in ff){ ## debugging [10:13]
 		df_ee$taxa <- fsplit[1]
 		df_ee$model <- fsplit[4]
 		y <- as.numeric(substr(x = fsplit[5], start = 1, stop =4))
+		df_ee$year <- y
 		df_ee$studyPeriodOne <- (y < 2020)
 		
 	} else{		
@@ -81,6 +88,7 @@ for(f in ff){ ## debugging [10:13]
 		df_t$taxa <- fsplit[1]
 		df_t$model <- fsplit[4]
 		y <- as.numeric(substr(x = fsplit[5], start = 1, stop =4))
+		df_t$year <- y
 		df_t$studyPeriodOne <- (y < 2020)
 		dim(df_t)
 		df_ee <- rbind(df_ee, df_t)
@@ -88,9 +96,5 @@ for(f in ff){ ## debugging [10:13]
 	}
 }
 save(list = "df_ee", file = file.path(baseDir, '/heatMap/week_survival_lat_taxa_model_studyPeriod.rData'))
-## Use dplyr to take mean across years within model, study period and taxa.
-
-## Use dplyr to take mean across study period and taxa.
-	
-heatmap(ee, Rowv = NA, Colv = NA)
+# see PlotHeatMap_weeklySurvial.Rmd for plotting
 
