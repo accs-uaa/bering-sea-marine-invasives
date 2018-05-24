@@ -1,4 +1,4 @@
-# D:\HelpingOthers\ABSIlcc\NFWF2016\Models\rCode\HeatMap_weeklySurvival.r
+# 03-weekly_survival-heat_map_by_latitude.R
 # library(geosphere)
 # library(sf)
 require(sp)
@@ -79,6 +79,6 @@ for(f in ff){
 		rm(df_t)
 	}
 }
-save(list = "df_ee", file = file.path(baseDir, '/heatMap/week_survival_lat_taxa_model_studyPeriod.rData'))
-# see PlotHeatMap_weeklySurvival.Rmd for plotting
+save(list = "df_ee", file = file.path(baseDir, '/rOut/week_survival_lat_taxa_model_studyPeriod.rData'))
+# see 05-figure-weekly_survival_heatmap for plotting
 
