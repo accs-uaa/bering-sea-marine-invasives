@@ -197,8 +197,9 @@ cat(nrow(df_ee), 'rows of data read in from', length(unique(df_ee$taxa)), 'taxa'
 ## $ year           &lt;dbl&gt; 2003, 2003, 2003, 2003, 2003, 2003, 2003, 2003,...
 ## $ studyPeriodOne &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,...</code></pre>
 </div>
-<div id="reshape-the-data-into-long-form-with-a-column-for-weeks-a-column-for-latidudinal-bands-and-the-columns-for-the-taxa-model-year-and-study-period." class="section level2">
-<h2>Reshape the data into long form with a column for weeks, a column for latidudinal bands, and the columns for the taxa, model, year and study period.</h2>
+<div id="reshape-the-data" class="section level2">
+<h2>Reshape the data</h2>
+<p>Reshape into long form with a column for weeks, a column for latitudinal bands, and the columns for the taxa, model, year and study period.</p>
 <pre class="r"><code>    df_tidy &lt;- df_ee %&gt;%
             gather(key = Week, value = survival, -taxa, -model, -studyPeriodOne, -lat, -year)
     df_tidy$Week &lt;- as.numeric(substr(df_tidy$Week, start = 6, stop = 7))
@@ -234,7 +235,9 @@ cat(nrow(df_ee), 'rows of data read in from', length(unique(df_ee$taxa)), 'taxa'
 <div id="sumarize-the-data" class="section level2">
 <h2>Sumarize the data</h2>
 <p>Summary plot of mean survival over all taxa by StudyPeriod (False = future, True = current) and latitudinal band.</p>
-<p>Take the mean of weekly survival across each year within each study period. If that mean is &gt;= 0.7, classify the latitudinal band as having habitat (1, 0 otherwise). This 7/10 threshold is the same threshold that was used to define year-round survival.</p>
+<p>Take the mean of weekly survival across each year within each study period.</p>
+<p>If that mean is &gt;= 0.7, classify the latitudinal band as having habitat (1, 0 otherwise).</p>
+<p>This 7/10 threshold is the same threshold that was used to define year-round survival.</p>
 <pre class="r"><code># Within a taxon-model-study period, and for each week:
 # How many years are predicted to have suitable habitat?
   df_byPeriodModel &lt;- df_tidy %&gt;% 
@@ -319,8 +322,12 @@ cat(nrow(df_ee), 'rows of data read in from', length(unique(df_ee$taxa)), 'taxa'
 <div id="plot" class="section level2">
 <h2>Plot</h2>
 <p>For each week and degree of latitude within the Bering Sea shelf, depict the mean survival across taxa averaged across years and models during the two study periods.</p>
-<p>Technical plotting issues: 1) Need to generate a meaningful time label on the x-axis (day of year, sensible grid lines every 1st day of every other month?) 2) Need a suitable plot grid to be in the foreground.<br />
-Perhaps a thin green line may work with the viridis::plasma pallet. 3) Need to improve the legend text, and numeric labels #Done?</p>
+<p>Technical plotting issues:</p>
+<ol style="list-style-type: decimal">
+<li><p>Need to generate a meaningful time label on the x-axis (day of year, sensible grid lines every 1st day of every other month?)</p></li>
+<li><p>Need a suitable plot grid to be in the foreground. Perhaps a thin green line may work with the viridis::plasma pallet.</p></li>
+<li><p>Need to improve the legend text, and numeric labels Done?</p></li>
+</ol>
 <pre class="r"><code>  color.pal &lt;- brewer.pal(11,&quot;RdYlBu&quot;)[c(11,9,8,7,5,4,3,1)]
  #the.breaks&lt;-c(-1,20,30,35,37,40,42)
 the.breaks&lt;-c(5,10,20,30,34,36,38,40,42) #no pixel predicted to have NIS &lt; 5

@@ -28,7 +28,8 @@ cat(nrow(df_ee), 'rows of data read in from', length(unique(df_ee$taxa)), 'taxa'
 glimpse(df_ee)
 ```
 
-## Reshape the data into long form with a column for weeks, a column for latidudinal bands, and the columns for the taxa, model, year and study period.
+## Reshape the data 
+Reshape into long form with a column for weeks, a column for latitudinal bands, and the columns for the taxa, model, year and study period.
 ```{r Reshape}
     df_tidy <- df_ee %>%
             gather(key = Week, value = survival, -taxa, -model, -studyPeriodOne, -lat, -year)
@@ -42,7 +43,9 @@ glimpse(df_ee)
 Summary plot of mean survival over all taxa by StudyPeriod (False = future, True = current) and latitudinal band.
 
 Take the mean of weekly survival across each year within each study period.
+
 If that mean is >= 0.7, classify the latitudinal band as having habitat (1, 0 otherwise).
+
 This 7/10 threshold is the same threshold that was used to define year-round survival.
 
 ```{r Summarize data}
@@ -86,10 +89,12 @@ Summarize across taxa
 For each week and degree of latitude within the Bering Sea shelf, depict the mean survival across taxa averaged across years and models during the two study periods.
 
 Technical plotting issues:
+
 1) Need to generate a meaningful time label on the x-axis (day of year, sensible grid lines every 1st day of every other month?)
-2) Need a suitable plot grid to be in the foreground.  
-Perhaps a thin green line may work with the viridis::plasma pallet.
-3) Need to improve the legend text, and numeric labels #Done?
+
+2) Need a suitable plot grid to be in the foreground. Perhaps a thin green line may work with the viridis::plasma pallet.
+
+3) Need to improve the legend text, and numeric labels Done?
   
 ```{r plot}
   color.pal <- brewer.pal(11,"RdYlBu")[c(11,9,8,7,5,4,3,1)]
