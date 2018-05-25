@@ -1,10 +1,23 @@
-# U.S. Geological Survey Alaska Science Center and the Alaska Center for Conservation Science at the University of Alaska Anchorage
-# R scripts for classification of marine invasive taxa habitat in the Bering Sea from Regional Ocean Models.
+# Predicting habitat suitability of non-native species in Alaska's Bering Sea
+Alaska Center for Conservation Science at the University of Alaska Anchorage
 
-# This repository represents an effort to predict habitat suitability for marine invasive species in the Bering Sea. Funding for this project was made available by the North Pacific Research Board (project #1532) and the Aleutian and Bering Sea Islands Landscape Conservation Cooperative.
+U.S. Geological Survey Alaska Science Center 
+
+
+# Project summary
+This repository contains R scripts that predict habitat suitability for non-native species in the Bering Sea.
+
+Our habitat models use species-specific thresholds (obtained from the literature) and modeled ocean conditions from Regional Ocean Modeling Systems (ROMS).
+
+We quantify habitat suitability for a) adult survival and b) reproduction and development life processes. Survival habitat is assessed at two temporal scales: year-round and weekly. Reproductive habitat is described in terms of "number of consecutive weeks". We consider two study periods: current (2003-2012) and future (2030-2039).
+
+Habitat models and final project report can be accessed on our website: http://www.beringinvaders.org
 
 ## Technologies
 - R (https://www.r-project.org/)
+- R Studio (https://www.rstudio.com/)
+- R Markdown (https://rmarkdown.rstudio.com/)
+- ESRI ArcGIS Desktop 10.5 (https://www.esri.com/en-us/arcgis/about-arcgis/overview)
 
 ## Build
 1. Download and install R (https://cran.r-project.org/)
@@ -42,3 +55,6 @@ This software is in the public domain because it contains materials that origina
 
 ## Approved software
 This software has NOT YET been approved for release by the U.S. Geological Survey (USGS). Although the software WILL BE subjected to rigorous review, the USGS reserves the right to update the software as needed pursuant to further analysis and review. No warranty, expressed or implied, is made by the USGS or the U.S. Government as to the functionality of the software and related material nor shall the fact of release constitute any such warranty. Furthermore, the software is released on condition that neither the USGS nor the U.S. Government shall be held liable for any damages resulting from its authorized or unauthorized use.  For more information, refer to IM OSQI 2015-03 (https://www2.usgs.gov/usgs-manual/im/IM-OSQI-2015-03.html) and IM OSQI 2015-05.
+
+## Acknowledgements
+Funding for this project was made available by the North Pacific Research Board (project #1532) and the Aleutian and Bering Sea Islands Landscape Conservation Cooperative.
