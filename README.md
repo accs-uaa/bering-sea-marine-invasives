@@ -3,6 +3,8 @@ Alaska Center for Conservation Science at the University of Alaska Anchorage
 
 U.S. Geological Survey Alaska Science Center 
 
+With major funding from the North Pacific Research Board (project #1532)
+
 
 # Project summary
 This repository contains R scripts that predict habitat suitability for non-native species in the Bering Sea.
@@ -56,4 +58,4 @@ This software is in the public domain because it contains materials that origina
 This software has NOT YET been approved for release by the U.S. Geological Survey (USGS). Although the software WILL BE subjected to rigorous review, the USGS reserves the right to update the software as needed pursuant to further analysis and review. No warranty, expressed or implied, is made by the USGS or the U.S. Government as to the functionality of the software and related material nor shall the fact of release constitute any such warranty. Furthermore, the software is released on condition that neither the USGS nor the U.S. Government shall be held liable for any damages resulting from its authorized or unauthorized use.  For more information, refer to IM OSQI 2015-03 (https://www2.usgs.gov/usgs-manual/im/IM-OSQI-2015-03.html) and IM OSQI 2015-05.
 
 # Acknowledgements
-Funding for this project was made available by the North Pacific Research Board (project #1532) and the Aleutian and Bering Sea Islands Landscape Conservation Cooperative.
+Funding for this project was made available by the North Pacific Research Board (project #1532) and the Aleutian and Bering Sea Islands Landscape Conservation Cooperative. Tracey Gotthardt and Aaron Poe were involved with spearheading the project. Casey Greenstein, Lindsey Flagstad, Bonnie Bernard, Jaime Weltfelt, and Curtis Whisman contributed to the development of the ranking system and the species status reports.  J.W. thanks Jen Karnak of Marine Exchange of Alaska, who assisted with vessel identification. A.F. thanks Rob Bochenek and Dr. William Koeppen of Axiom Data Science for assistance extracting the ROMS data. A.D. thanks Marcus Geist for his GIS wizarding and Dr. Al Hermann for insightful conversations about the ROMS. Additional thanks goes to Dr. Matt Carlson for his valuable feedback on the manuscript.
