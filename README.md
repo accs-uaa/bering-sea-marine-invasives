@@ -13,17 +13,16 @@ We quantify habitat suitability for a) adult survival and b) reproduction and de
 
 Habitat models and final project report can be accessed on our website: http://www.beringinvaders.org
 
-## Technologies
+# Technologies
 - R (https://www.r-project.org/)
 - R Studio (https://www.rstudio.com/)
 - R Markdown (https://rmarkdown.rstudio.com/)
 - ESRI ArcGIS Desktop 10.5 (https://www.esri.com/en-us/arcgis/about-arcgis/overview)
 
-## Build
-1. Download and install R (https://cran.r-project.org/)
-2. Install the following R contributed packages (doSNOW, dplyr, raster, rgdal, rgeos, sp, viridis)
+## R Packages
+Install the following R contributed packages: doSNOW, dplyr, raster, rgdal, rgeos, sp, viridis, RColorBrewer, ggplot2, tidyr
 
-## File organization
+# File organization
 The following directory structure must be in place.
 * ..\PMEL-Models\netCDF [contains netCDF extracts from the ROMS models, provided by Will Koeppen of AXIOM consulting.
 * ..\PMEL-Models\GIS [for GIS geoTiff extracts of output and basemap spatial polygons files]
@@ -50,11 +49,11 @@ The following directory structure must be in place.
 * Continents.rData a spatialPolygon representation of the land within the study area.  This is built from a local copy of the ESRI continents dataset.
 * BeringSea_200m.shp [Shapefile of the Bering Sea that determines the extent of our study area. This was built from: 1) ESRI World Water Bodies layer package. Available from: http://www.arcgis.com/home/item.html?id=e750071279bf450cbd510454a80f2e63 and 2) Marine Ecoregions of the World (MEOW). Available from: http://maps.tnc.org/files/metadata/MEOW.xml] The Bering Sea was clipped to include only areas < 200 m depth. See BeringSea_Raster.R code for more information.
 
-## Copyright
+# Copyright
 This software is in the public domain because it contains materials that originally came from the United States Geological Survey, an agency of the United States Department of Interior. For more information, see the official USGS copyright policy at http://www.usgs.gov/visual-id/credit_usgs.html#copyright
 
-## Approved software
+# Approved software
 This software has NOT YET been approved for release by the U.S. Geological Survey (USGS). Although the software WILL BE subjected to rigorous review, the USGS reserves the right to update the software as needed pursuant to further analysis and review. No warranty, expressed or implied, is made by the USGS or the U.S. Government as to the functionality of the software and related material nor shall the fact of release constitute any such warranty. Furthermore, the software is released on condition that neither the USGS nor the U.S. Government shall be held liable for any damages resulting from its authorized or unauthorized use.  For more information, refer to IM OSQI 2015-03 (https://www2.usgs.gov/usgs-manual/im/IM-OSQI-2015-03.html) and IM OSQI 2015-05.
 
-## Acknowledgements
+# Acknowledgements
 Funding for this project was made available by the North Pacific Research Board (project #1532) and the Aleutian and Bering Sea Islands Landscape Conservation Cooperative.
