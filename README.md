@@ -1,4 +1,4 @@
-# Predicting habitat suitability of non-native species in Alaska's Bering Sea
+# Non-native marine species in Alaska's Bering Sea
 A collaboration between the Alaska Center for Conservation Science (University of Alaska Anchorage), the U.S. Geological Survey Alaska Science Center, and NOAA's Alaska Fisheries Science Center. Major funding was provided by the North Pacific Research Board (project #1532).
 
 # Project summary
