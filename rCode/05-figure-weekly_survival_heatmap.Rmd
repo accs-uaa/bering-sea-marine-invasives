@@ -97,10 +97,12 @@ Technical plotting issues:
 3) Need to improve the legend text, and numeric labels Done?
   
 ```{r plot}
-  color.pal <- brewer.pal(11,"RdYlBu")[c(11,9,8,7,5,4,3,1)]
- #the.breaks<-c(-1,20,30,35,37,40,42)
-the.breaks<-c(5,10,20,30,34,36,38,40,42) #no pixel predicted to have NIS < 5
-  the.labels<-c("6 - 9","10 - 20", "20 - 29", "30 - 33","34 - 35", "36 - 37", "38 - 39", "40 - 42") #breaks are (inclusive,excluded] Starts at 5 but minimum NIS richness is 5.66 and I'm rounding up to nearest integer for legend clarity
+  # color.pal <- brewer.pal(11,"RdYlBu")[c(11,9,8,7,5,4,3,1)]
+color.pal <- brewer.pal(11,"RdYlBu")[c(11,9,8,7,5,4,2)]
+
+the.breaks<-c(0,6,12,18,24,30,36,43) 
+  the.labels<-c("0 - 6","6 - 12","12 - 18", "18 - 24", "24 - 30","30 - 36", "36 - 42") #breaks are (included,excluded] 
+  
   df_byPeriod %>% 
     mutate(spRichf=cut(speciesRichness,breaks=the.breaks)) %>%
     mutate(periodf=factor(Period,levels=c(0,1),labels=c("2003-2012","2030-2039"))) %>%
@@ -108,15 +110,17 @@ the.breaks<-c(5,10,20,30,34,36,38,40,42) #no pixel predicted to have NIS < 5
     #subset to make the plot prettier
     #remove 53 weeks - doesn't happen every year so it's not out of 10 (removes right-most vertical band of no species richness across all latitudes)
     #remove latitude 51 (so few pixels that you end up getting little survival predicted)
-    ggplot(aes(Week, lat, as.factor(spRichf))) + 
+   
+     ggplot(aes(Week, lat, as.factor(spRichf))) + 
     geom_tile(aes(fill = as.factor(spRichf))) + 
-   scale_fill_manual(values=color.pal,name="NIS Richness",labels=factor(the.labels)) +
+   scale_fill_manual(values=color.pal,name="NIS with Suitable Habitat",labels=factor(the.labels)) +
     #scale_fill_manual(values=color.pal,name=factor(the.breaks)) +
-    scale_y_continuous(breaks=seq(from=51,to=67,by=2),name="Latitude",expand=c(0,0))+
+    scale_y_continuous(breaks=seq(from=51,to=67,by=2),name="Latitude (°N)",expand=c(0,0))+
     scale_x_continuous(breaks=seq(from=0,to=50,by=10),name="Week of the Year")+
     theme_classic() +
-    theme(legend.direction = "vertical",
-        legend.title = element_text('NIS Richness'), 
+   
+     theme(legend.direction = "vertical",
+        legend.title = element_text(''), 
          panel.spacing = unit(2, "lines"), #sets spacing between facet panels
          panel.grid.major = element_line(size = 0.5, colour = '#00441155')) +
     facet_wrap(~periodf)
@@ -153,4 +157,44 @@ the.breaks<-c(5,10,20,30,34,36,38,40,42)
     #facet_wrap(~periodf)
   
 ##ggsave("plots/heatmap_weekly_period1.png", plot = last_plot(), width = 6, height = 4, units = "in",dpi = 300)
+```
+
+Plot change in
+```{r change}
+df_byPeriod0 <- df_byPeriod %>% 
+  filter(Period == 0) %>% 
+  arrange(Week,lat)
+
+df_byPeriod1 <- df_byPeriod %>% 
+  filter(Period == 1) %>% 
+  arrange(Week,lat)
+
+df_byPeriod1$speciesRichness <- df_byPeriod1$speciesRichness-df_byPeriod0$speciesRichness
+df_byPeriod1$Period = 2
+
+color.pal <- brewer.pal(11,"RdYlBu")[c(9,7,4,3,2,1)]
+
+the.breaks<-c(-10,-0.4,0.67,8) 
+  the.labels<-c("Suitable for Less NIS","No Change","Suitable for More NIS") #breaks are (included,excluded] 
+  
+  df_byPeriod1 %>% 
+    mutate(spRichf=cut(speciesRichness,breaks=the.breaks)) %>%
+    subset(Week<53 & lat > 51) %>% 
+    #subset to make the plot prettier
+    #remove 53 weeks - doesn't happen every year so it's not out of 10 (removes right-most vertical band of no species richness across all latitudes)
+    #remove latitude 51 (so few pixels that you end up getting little survival predicted)
+   
+     ggplot(aes(Week, lat, as.factor(spRichf))) + 
+    geom_tile(aes(fill = as.factor(spRichf))) + 
+   scale_fill_manual(values=color.pal,name="NIS with Suitable Habitat",labels=factor(the.labels)) +
+    #scale_fill_manual(values=color.pal,name=factor(the.breaks)) +
+    scale_y_continuous(breaks=seq(from=51,to=67,by=2),name="Latitude (°N)",expand=c(0,0))+
+    scale_x_continuous(breaks=seq(from=0,to=50,by=10),name="Week of the Year")+
+    theme_classic() +
+   
+     theme(legend.direction = "vertical",
+        legend.title = element_text(''), 
+         panel.spacing = unit(2, "lines"), #sets spacing between facet panels
+         panel.grid.major = element_line(size = 0.5, colour = '#00441155')) 
+
 ```
