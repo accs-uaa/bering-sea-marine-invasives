@@ -80,5 +80,5 @@ for(f in ff){
 	}
 }
 save(list = "df_ee", file = file.path(baseDir, '/rOut/week_survival_lat_taxa_model_studyPeriod.rData'))
-# see 05-figure-weekly_survival_heatmap for plotting
+# see 05-figure-weeklySurvival. for plotting
 
