@@ -1,4 +1,3 @@
-## D:\HelpingOthers\ABSIlcc\NFWF2016\Models\rCode\TaxaSuitability.r
 # Author: A.S. Fischbach (afischbach@usgs.gov)
 # A. Droghini (adroghini@alaska.edu)
 # With insights on base r's rle function and parallel processing from Vijay Patil (vpatil@usgs.gov), 16 Febuary 2017
