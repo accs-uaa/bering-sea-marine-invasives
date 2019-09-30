@@ -38,13 +38,14 @@ The following directory structure must be in place.
 * ..\PMEL-Models\rOut\Weekly_Survival [for weekly suitability results]
 * ..\PMEL-Models\rOut\Repro_Plots [for reproduction results]
  
-## File dependency
+## File dependencies
 * Species_Tolerances.csv [This file contains the summary data on temperature and salinity requirements for the marine invasive taxa considered]
 * ports.csv [This file contains WGS84 coordinates and IATA abreviations for ports within the study area]
 * ETOPO1.rData [This file contains bathymetry data that is called upon by the 'ExploreData.r' script.  It is built by the marmap package
 * marmap_coord_-135;43;160;77_res_1_anti.csv data used in generating the ETOPO1 dataset by marmap.
 * Continents.rData a spatialPolygon representation of the land within the study area.  This is built from a local copy of the ESRI continents dataset.
 * BeringSea_200m.shp [Shapefile of the Bering Sea that determines the extent of our study area. This was built from: 1) ESRI World Water Bodies layer package. Available from: http://www.arcgis.com/home/item.html?id=e750071279bf450cbd510454a80f2e63 and 2) Marine Ecoregions of the World (MEOW). Available from: http://maps.tnc.org/files/metadata/MEOW.xml] The Bering Sea was clipped to include only areas < 200 m depth. See BeringSea_Raster.R code for more information.
+* Files from the Bering 10K ROMS. We obtained the files from [Axiom Data Science](https://www.axiomdatascience.com/contact/) 
 
 # Copyright
 This software is in the public domain because it contains materials that originally came from the United States Geological Survey, an agency of the United States Department of Interior. For more information, see the official USGS copyright policy at http://www.usgs.gov/visual-id/credit_usgs.html#copyright
