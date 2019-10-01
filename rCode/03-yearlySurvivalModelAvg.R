@@ -1,7 +1,7 @@
 #####################################################
 ## Project: Bering Sea marine invasives - Year-round Survival
 ## Intent: Summarize year-round survival suitability across taxa and across the 3 ROMS for a) current and b) mid-century projections.
-## This script is dependent on outputs from the 02-analysis-habitat_suitability.R script
+## This script is dependent on outputs from the 02-evaluate_habitat_suitability.R script
 ## Authors: A.S. Fischbach (afischbach@usgs.gov)
 ##			A. Droghini (adroghini@alaska.edu)
 #####################################################
@@ -34,11 +34,11 @@ mm <- unique(output$Model)
 
 for (period_i in 1:2){ # Process by study period: a) current (2003-2012); b) mid-century (2030-2039)
 	sp=spp[period_i]
-	
+
 	for(model_i in 1:3){ ##Process by model
 		m = mm[model_i]
 	cat('\nExploring survival for study period', sp, 'projected by model', m, fill =T)
-	
+
 	#Evaluate decadal year-round survival for each taxon
 	#For each model, define habitat as suitable if taxon can survive year-round in a given pixel for >= 7 years (out of 10)
 	for(i in 1:length(taxa)){
@@ -49,18 +49,18 @@ for (period_i in 1:2){ # Process by study period: a) current (2003-2012); b) mid
 		load(f, verbose = T) #load RasterStack s_OK.S
 		#s_OK.S contains 10 layers of habitat suitability, one for every year in the study period
 		#binary raster where 1 = suitable year-round, 0 = unsuitable
-		
+
 		#print(mean(values((sum(s_OK.S) >= 7)), na.rm=T))
 		#plot(sum(s_OK.S) >= 7)
-		
+
 		if(i ==1){ ##if first species
-			nSurvival <- (sum(s_OK.S) >= 7) 
-		}else{ 
+			nSurvival <- (sum(s_OK.S) >= 7)
+		}else{
 			nSurvival <- nSurvival + (sum(s_OK.S) >= 7) ##add to previous results
 		}
 		rm(s_OK.S)
 		} #end of across taxa loop
-		
+
 	##Summarize over all 3 models
 	if(model_i == 1){
 			CountSurvival <- stack(nSurvival)
@@ -68,7 +68,7 @@ for (period_i in 1:2){ # Process by study period: a) current (2003-2012); b) mid
 			CountSurvival <- addLayer(CountSurvival, nSurvival)
 		}
 	} #end of model loop
-	
+
 ensembleSurvival<- mean(CountSurvival)
 ensemble.clip<-ensembleSurvival*Bering_200m #clip to study area (Bering Sea continental shelf)
 plot(ensemble.clip,main=paste("Year-round survival, averaged across 3 ROMS for",sp,sep=" "))

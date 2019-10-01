@@ -1,4 +1,5 @@
-# Objective: Create a figure that summarizes total number of NIS predicted to have suitable habitat for every week and every latitude.
+# Objective: Summarize the number of NIS predicted to have suitable habitat for every week and every latitude.
+# To generate heatmap figure.
 
 # Author: A. S. Fischbach
 
@@ -34,7 +35,7 @@ summary(df_tidy)
 
 # Summarize weekly survival over all taxa by StudyPeriod (False = future, True = current) and latitudinal band.
 
-# For each taxon, take the mean of weekly survival across each year within each study period.If that mean is >= 0.7, classify the latitudinal band as having habitat (1, 0 otherwise). This 7/10 threshold is the same threshold that was used to define year-round survival.
+# For each taxon, take the mean of weekly survival across each year within each study period. If that mean is >= 0.7, classify the latitudinal band as having habitat (1, 0 otherwise). This 7/10 threshold is the same threshold that was used to define year-round survival.
 
 # Within a taxon-model-study period, and for each week:
 # How many years are predicted to have suitable habitat?
