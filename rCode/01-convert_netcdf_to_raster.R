@@ -11,14 +11,10 @@
 # ..\Models\rCode [contains scripts]
 # ..\Models\rData [contains ROMS data cast as spatialGridDataFrames]
 
-#### Set-up and load packages----
-baseDir <- 'D:/HelpingOthers/ABSIlcc/NFWF2016/Models/'
-setwd(file.path(baseDir, 'rCode'))
-require(raster)
-require(ncdf4)
-require(sp)
-require(rgdal)
-require(doSNOW)
+#### Set-up requirements----
+
+## Source initial run script
+source('rCode/init.R')
 
 ## Define projections
 prj.StudyArea <- CRS("+proj=aeqd +lat_0=55 +lon_0=-170 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0")
@@ -40,17 +36,17 @@ vars<-c('sea_water_temperature', 'salinity')
 for (f in ff){
 	nc <- nc_open( filename = file.path(baseDir, 'netCDF', f), write=FALSE, readunlim=TRUE, verbose=T,
 		auto_GMT=TRUE, suppress_dimvals=FALSE )
-	
+
 	for(Var in vars){ ## handle both variables.
 	  st <- Sys.time()
 	  TimeSteps <- data.frame(TIME=ncvar_get(nc, varid='TIME'))
 	  TimeSteps$Date<-as.POSIXct(TimeSteps$TIME, tz='UTC',
-	                             origin = as.POSIXct('01-Jan-1900 00:00:00', 
+	                             origin = as.POSIXct('01-Jan-1900 00:00:00',
 	                                                 format='%d-%b-%Y %H:%M:%S', tz='UTC'))
 	  TimeSteps$Week<-format(TimeSteps$Date, '%Y_%V_%d')
-	  
+
 	  registerDoSNOW(cl)					## DoSNOW housekeeping
-	  
+
 	  sgdf.Max <- foreach(i = 1:nrow(TimeSteps), .combine = 'cbind', .packages = 'raster') %dopar% {
 	    b<-brick(file.path(baseDir, 'netCDF', f), 	varname =  Var, lvar = 4, level = i) ##, levels...DEPTH
 	    b[values(b)== -1e+34]<-NA  	## remove the NA values
@@ -61,7 +57,7 @@ for (f in ff){
 	    return(sgdf.Max)
 	  } ## time step
 	  stopCluster(cl) ## release the cluster
-	  
+
 	  fileName<-file.path(file.path(baseDir, 'rData', paste0(unlist(strsplit(f, ".nc")), '_', Var,  '.rData')))
 	  cat('..... --> Saving', fileName, fill=T)
 	  save(sgdf.Max, file=fileName)
