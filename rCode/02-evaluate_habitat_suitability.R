@@ -39,7 +39,7 @@ SpToler$Sci_Name <- make.names(SpToler$Sci_Name) ## Ensure taxa names are R-frie
 SpToler <- SpToler[!is.na(SpToler$Min_TempC) & !is.na(SpToler$Max_TempC) & !is.na(SpToler$Min_Salinity) & !is.na(SpToler$Max_Salinity), ]
 
 ## List ROMS data files
-ff <- list.files(path = file.path(baseDir, 'PMEL-Models/rData'), pattern='.rData')
+ff <- list.files(path = file.path(baseDir, 'rData'), pattern='.rData')
 ff <- sort(ff[ff != "portData.rData" ]) ## drop port data
 
 #### Determine habitat suitability----
@@ -68,11 +68,11 @@ for(i in seq(from = 1, to = length(ff), by = 2)){
 	modelPeriod <- paste(Model,unlist(strsplit(unlist(strsplit(f, ".rData")), '_'))[3]) ##create character string for model + time period
 	cat(i, '=== Handling ===', f, fill =T)
 
-	load(file.path(baseDir, 'PMEL-Models/rData', f))
+	load(file.path(baseDir, 'rData', f))
 	sgdf.S <- sgdf.Max 	## Cast this as the salinity spatialGridDataFrame
 	rm('sgdf.Max')
 	f <- ff[i+1] ## grab the next file name
-	load(file.path(baseDir, 'PMEL-Models/rData', f))
+	load(file.path(baseDir, 'rData', f))
 	sgdf.T <- sgdf.Max 	## Cast this as the temperature spatialGridDataFrame
 	rm('sgdf.Max')
 	yy <- as.numeric(sort(unique(substring(names(sgdf.T@data), 1,4))))  ## Extract the years from the spatial grid dataframe columns
