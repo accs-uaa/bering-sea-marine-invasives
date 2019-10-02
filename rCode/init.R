@@ -1,7 +1,7 @@
 ## This file is intended to set the working directory and load all required packages for all scripts.
 
 baseDir <- 'C:/Users/adroghini/Documents/bering-invaders/PMEL-Models'
-setwd(file.path(baseDir))
+setwd(baseDir)
 
 # Load packages
 
