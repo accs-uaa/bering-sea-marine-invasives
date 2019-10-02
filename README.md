@@ -21,22 +21,22 @@ Install the following R contributed packages: doSNOW, dplyr, raster, rgdal, rgeo
 
 # File organization
 The following directory structure must be in place.
-* ..\PMEL-Models\netCDF [contains netCDF extracts from the ROMS models, provided by Will Koeppen of AXIOM consulting.
-* ..\PMEL-Models\GIS [for GIS geoTiff extracts of output and basemap spatial polygons files]
-* ..\PMEL-Models\rCode [contains scripts]
-* ..\PMEL-Models\rData [contains ROMS data cast as spatialGridDataFrames]
-* ..\PMEL-Models\plots [for summary plots]
-* ..\PMEL-Models\plots\taxa [for taxa specific plots]
-* ..\PMEL-Models\plots\taxa\Reproduction [for taxa specific reproductive plots]
-* ..\PMEL-Models\plots\taxa\Survival [for taxa specific Survival plots]
-* ..\PMEL-Models\plots\taxa\SurvivalWeeks [for taxa specific SurvivalWeeks plots]
-* ..\PMEL-Models\rOut\Reproduction [for taxa specific Reproduction .Rdata]
-* ..\PMEL-Models\rOut\Survival [for taxa specific Survival .Rdata]
-* ..\PMEL-Models\rOut\SurvivalWeeks [for taxa specific SurvivalWeeks .Rdata]
-* ..\PMEL-Models\rOut\SurvivalWeeks_which [for taxa specific SurvivalWeeks_which .Rdata]
-* ..\PMEL-Models\rOut\OverallTaxa_Year [for year-round suitability results]
-* ..\PMEL-Models\rOut\Weekly_Survival [for weekly suitability results]
-* ..\PMEL-Models\rOut\Repro_Plots [for reproduction results]
+* ..\netCDF [contains netCDF extracts from the ROMS models, provided by Will Koeppen of AXIOM consulting.
+* ..\GIS [for GIS geoTiff extracts of output and basemap spatial polygons files]
+* ..\rCode [contains scripts]
+* ..\rData [contains ROMS data cast as spatialGridDataFrames]
+* ..\plots [for summary plots]
+* ..\plots\taxa [for taxa specific plots]
+* ..\plots\taxa\Reproduction [for taxa specific reproductive plots]
+* ..\plots\taxa\Survival [for taxa specific Survival plots]
+* ..\plots\taxa\SurvivalWeeks [for taxa specific SurvivalWeeks plots]
+* ..\rOut\Reproduction [for taxa specific Reproduction .Rdata]
+* ..\rOut\Survival [for taxa specific Survival .Rdata]
+* ..\rOut\SurvivalWeeks [for taxa specific SurvivalWeeks .Rdata]
+* ..\rOut\SurvivalWeeks_which [for taxa specific SurvivalWeeks_which .Rdata]
+* ..\rOut\OverallTaxa_Year [for year-round suitability results]
+* ..\rOut\Weekly_Survival [for weekly suitability results]
+* ..\rOut\Repro_Plots [for reproduction results]
  
 ## File dependencies
 * Species_Tolerances.csv [This file contains the summary data on temperature and salinity requirements for the marine invasive taxa considered]
