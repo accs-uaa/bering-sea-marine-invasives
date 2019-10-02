@@ -16,20 +16,15 @@
 
 #### Start up requirements----
 
-# Load required packages
-require(sp)
-require(raster)
-require(viridis)## Thanks to Jordan Watson at NOAA for a color ramp that is perceived as uniform across its range.
-				## https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
-require(doSNOW) ## For parallel processing of the run length encoding function.
-
-# Set working directory
-baseDir <- getwd()
-
-#### Prepare data files ----
+## Source initial run script
+source('rCode/init.R')
 
 ## Source functions for calculating consecutive number of weeks
 source('rCode/functionConsecutiveWeeks.R')
+
+#### Prepare data files ----
+
+
 
 ## Read in NIS physiological tolerances
 SpToler <- read.csv('rData/Species_Tolerances.csv')
