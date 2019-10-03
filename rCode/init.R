@@ -6,12 +6,19 @@ setwd(baseDir)
 # Load packages
 
 require(doSNOW) ## For parallel processing of the run length encoding function.
+require(dplyr)
+
+require(ncdf4)
+
+require(marmap)
 
 require(raster)
 require(rgdal)
 require(rgeos)
 
 require(sp)
+
+require(tidyverse)
 
 require(viridis) ## Thanks to Jordan Watson at NOAA for a color ramp that is perceived as uniform across its range.
 				## https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
