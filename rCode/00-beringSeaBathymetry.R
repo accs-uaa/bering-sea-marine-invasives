@@ -1,13 +1,6 @@
 # This code uses the marmap package to query NOAA's ETOPO1 databases and create a bathymetry raster for the Bering Sea
-# This raster is then exported and loaded into ESRI ArcMap 10.5
+# This raster is then exported and loaded into ESRI ArcMap 10.5, where it is used to clip the Bering Sea to only include areas with water depth <= 200 m
 # Author: A.S. Fischbach (afischbach@usgs.gov)
-
-# In ArcMap 10.5, using the XTools Pro package (https://xtools.pro/), we converted the line features of the Bering Sea to a polygon
-# We then clipped the Bering Sea study area to only include areas <= 200 m depth
-
-# The script 00-beringSeaRasterize.R then converts the shapefile into a raster 
-
-# Thank you Marcus Geist (https://accs.uaa.alaska.edu/landscape-ecology/#marcus-geist) for the GIS help
 
 ## Source initial run script
 source('rCode/init.R')
