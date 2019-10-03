@@ -17,7 +17,7 @@ Habitat models and final project report can be accessed on our website: http://w
 - ESRI ArcGIS Desktop 10.5 (https://www.esri.com/en-us/arcgis/about-arcgis/overview)
 
 ## R Packages
-Install the following R contributed packages: doSNOW, dplyr, raster, rgdal, rgeos, sp, viridis, RColorBrewer, ggplot2, tidyr
+Install the following R contributed packages: doSNOW, dplyr, ggplot2, marmap, ncdf4, raster, rgdal, rgeos, sp, viridis, RColorBrewer, tidyverse
 
 # File organization
 The following directory structure must be in place.
