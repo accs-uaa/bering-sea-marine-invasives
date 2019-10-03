@@ -44,7 +44,7 @@ The following directory structure must be in place.
 * ETOPO1.rData [This file contains bathymetry data that is called upon by the 'ExploreData.r' script.  It is built by the marmap package
 * marmap_coord_-135;43;160;77_res_1_anti.csv data used in generating the ETOPO1 dataset by marmap.
 * Continents.rData a spatialPolygon representation of the land within the study area.  This is built from a local copy of the ESRI continents dataset.
-* BeringSea_200m.shp [Shapefile of the Bering Sea that determines the extent of our study area. This was built from: 1) ESRI World Water Bodies layer package. Available from: http://www.arcgis.com/home/item.html?id=e750071279bf450cbd510454a80f2e63 and 2) Marine Ecoregions of the World (MEOW). Available from: http://maps.tnc.org/files/metadata/MEOW.xml] The Bering Sea was clipped to include only areas < 200 m depth. See BeringSea_Raster.R code for more information.
+* beringSeaContinentalShelf.shp [Shapefile of the Bering Sea that determines the extent of our study area. Available [online through the ACCS Catalog](https://accscatalog.uaa.alaska.edu/dataset/resource/ab3f41f1-7dc6-4905-b307-ec99b430ec12).
 * Files from the Bering 10K ROMS. We obtained the files from [Axiom Data Science](https://www.axiomdatascience.com/contact/) 
 
 # Copyright
