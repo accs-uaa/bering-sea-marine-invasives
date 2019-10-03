@@ -22,7 +22,9 @@ Install the following R contributed packages: doSNOW, dplyr, raster, rgdal, rgeo
 # File organization
 The following directory structure must be in place.
 * ..\netCDF [contains netCDF extracts from the ROMS models, provided by Will Koeppen of AXIOM consulting.
-* ..\GIS [for GIS geoTiff extracts of output and basemap spatial polygons files]
+* ..\gis_products [for geoTiff extracts of outputs, used for generating figures in ESRI ArcMap]
+* ..\gis_products\allTaxa
+* ..\gis_products\allTaxa\yearlySurvival [for storing final raster results from year-round survival analyses]
 * ..\rCode [contains scripts]
 * ..\rData [contains ROMS data cast as spatialGridDataFrames]
 * ..\plots [for summary plots]
