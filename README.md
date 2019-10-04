@@ -23,12 +23,10 @@ Install the following R contributed packages: doSNOW, dplyr, ggplot2, marmap, nc
 The following directory structure must be in place.
 * ..\netCDF [contains netCDF extracts from the ROMS models, provided by Will Koeppen of AXIOM consulting.
 * ..\gis_products [for geoTiff extracts of outputs, used for generating figures in ESRI ArcMap]
-* ..\gis_products\allTaxa
 * ..\gis_products\allTaxa\yearlySurvival [for storing final raster results from year-round survival analyses]
 * ..\rCode [contains scripts]
 * ..\rData [contains ROMS data cast as spatialGridDataFrames]
 * ..\plots [for summary plots]
-* ..\plots\taxa [for taxa specific plots]
 * ..\plots\taxa\Reproduction [for taxa specific reproductive plots]
 * ..\plots\taxa\Survival [for taxa specific Survival plots]
 * ..\plots\taxa\SurvivalWeeks [for taxa specific SurvivalWeeks plots]
