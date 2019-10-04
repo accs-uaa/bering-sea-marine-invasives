@@ -34,7 +34,7 @@ mm <- unique(output$Model)
 # First, process by study period: a) current (2003-2012); b) mid-century (2030-2039)
 # Then, process by model
 # Then by taxon
-# Habitat was defined as 'suitable' if taxon could survive year-round in a given pixel for >= 7 years out of 10 year study period
+# Habitat is defined as 'suitable' if taxon could survive year-round in a given pixel for >= 7 years out of 10 year study period
 # Sum habitat suitability across all taxa
 # And average across the three ROMS
 
