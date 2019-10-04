@@ -1,20 +1,19 @@
 # Objective: Summarize the number of NIS predicted to have suitable habitat for every week and every latitude.
 # To generate heatmap figure.
 
-# Author: A. S. Fischbach
+# Author: A.S. Fischbach (afischbach@usgs.gov)
+          A. Droghini (adroghini@alaska.edu)
 
-# Load packages -----------------------------------------------------------
-library(tidyverse)
+## Source initial run script
+source('rCode/init.R')
 
 # Load data ---------------------------------------------------------------
 
-# The dat.frame df_ee was built by the .\rCode\03-weekly_survival-by_latitude.R script, which summarized weekly survival into 1 degree latitudinal bands for all taxa, modeled across study years within each study period.
+# The dat.frame df_ee was built by the .\rCode\03-weeklySurvivalbyLatitude.R script, which summarized weekly survival into 1 degree latitudinal bands for all taxa, modeled across study years within each study period.
+
 # Each row of this dat.frame represents survival across weeks (columns 1:53) for each taxon, model, and year (indicated in the columns 'taxa', 'model', and 'year'). The column 'studyPeriodOne' is TRUE if year is part of the study period 2003-2012
 
-# baseDir <- 'D:/HelpingOthers/droghini/sea-invaders'
-baseDir <- 'C:/Users/adroghini/Documents/bering-invaders'
-# load(file.path(baseDir, '/heatMap/week_survival_lat_taxa_model_studyPeriod.rData'))
-load(file.path(baseDir, '/PMEL-Models/rOut/week_survival_lat_taxa_model_studyPeriod.rData'))
+load(file.path(baseDir, '/rOut/week_survival_lat_taxa_model_studyPeriod.rData'))
 
 cat(nrow(df_ee), 'rows of data read in from', length(unique(df_ee$taxa)), 'taxa', fill =T)
 glimpse(df_ee)
