@@ -10,6 +10,9 @@
 ## Source initial run script
 source('rCode/init.R')
 
+## Load required files
+source('rCode/00-beringSeaRasterize.R') # study area raster
+
 ## Create data frame to hold details of all .Rdata output files (file name, species, model, study period, and aspect)
 ff <- list.files(file.path(baseDir, 'rOut', 'Survival'), pattern = 'rData')
 
@@ -31,7 +34,7 @@ mm <- unique(output$Model)
 # First, process by study period: a) current (2003-2012); b) mid-century (2030-2039)
 # Then, process by model
 # Then by taxon
-# Define habitat as 'suitable' if taxon can survive year-round in a given pixel for >= 7 years out of 10 year study period
+# Habitat was defined as 'suitable' if taxon could survive year-round in a given pixel for >= 7 years out of 10 year study period
 # Sum habitat suitability across all taxa
 # And average across the three ROMS
 
@@ -73,7 +76,6 @@ for (period_i in 1:2){
 ensembleSurvival<- mean(CountSurvival)
 
 # Clip to study area - Bering Sea continental shelf
-source('rCode/00-beringSeaRasterize.R')
 ensembleClip <- ensembleSurvival * beringShelf
 
 plot(ensembleClip,main=paste("Number of NIS with year-round survival",sp,sep=" "))
