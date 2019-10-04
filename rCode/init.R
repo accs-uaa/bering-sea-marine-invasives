@@ -5,6 +5,8 @@ setwd(baseDir)
 
 # Load packages
 
+require(plyr)
+
 require(doSNOW) ## For parallel processing of the run length encoding function.
 require(dplyr)
 
