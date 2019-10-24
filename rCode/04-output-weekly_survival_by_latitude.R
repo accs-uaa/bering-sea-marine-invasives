@@ -2,7 +2,7 @@
 # To generate heatmap figure.
 
 # Author: A.S. Fischbach (afischbach@usgs.gov)
-          A. Droghini (adroghini@alaska.edu)
+#          A. Droghini (adroghini@alaska.edu)
 
 ## Source initial run script
 source('rCode/init.R')
