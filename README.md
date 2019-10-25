@@ -19,7 +19,13 @@ Habitat models and final project report can be accessed on our website: http://w
 ## R Packages
 Install the following R contributed packages: doSNOW, dplyr, ggplot2, marmap, ncdf4, plyr, raster, rgdal, rgeos, sp, viridis, RColorBrewer, tidyverse
 
-# File organization
+# File dependencies
+* Species_Tolerances.csv [This file contains the summary data on temperature and salinity requirements for the marine invasive taxa considered]
+* ports.csv [This file contains WGS84 coordinates and IATA abreviations for ports within the study area]
+* beringSeaContinentalShelf.shp [Shapefile of the Bering Sea that determines the extent of our study area. Available [online through the ACCS Catalog](https://accscatalog.uaa.alaska.edu/dataset/resource/ab3f41f1-7dc6-4905-b307-ec99b430ec12)].
+* Files from the Bering 10K ROMS. We obtained the files from [Axiom Data Science](https://www.axiomdatascience.com/contact/)
+
+## File organization
 The following directory structure must be in place.
 * ..\netCDF [contains netCDF extracts from the ROMS models, provided by Will Koeppen of AXIOM consulting.
 * ..\gis_products [for geoTiff extracts of outputs, used for generating figures in ESRI ArcMap]
@@ -34,12 +40,6 @@ The following directory structure must be in place.
 * ..\rOut\OverallTaxa_Year [for summary year-round suitability results]
 * ..\rOut\OverallTaxa_Repro [for summary reproductive suitability results]
 * ..\rOut\OverallTaxa_Weekly [for summary weekly suitability results]
-
-## File dependencies
-* Species_Tolerances.csv [This file contains the summary data on temperature and salinity requirements for the marine invasive taxa considered]
-* ports.csv [This file contains WGS84 coordinates and IATA abreviations for ports within the study area]
-* beringSeaContinentalShelf.shp [Shapefile of the Bering Sea that determines the extent of our study area. Available [online through the ACCS Catalog](https://accscatalog.uaa.alaska.edu/dataset/resource/ab3f41f1-7dc6-4905-b307-ec99b430ec12)].
-* Files from the Bering 10K ROMS. We obtained the files from [Axiom Data Science](https://www.axiomdatascience.com/contact/)
 
 # Copyright
 This software is in the public domain because it contains materials that originally came from the United States Geological Survey, an agency of the United States Department of Interior. For more information, see the official USGS copyright policy at http://www.usgs.gov/visual-id/credit_usgs.html#copyright
