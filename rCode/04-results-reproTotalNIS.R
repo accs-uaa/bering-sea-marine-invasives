@@ -1,19 +1,22 @@
-# Intent: Summarize results from reproductive habitat suitability analyses. Calculate the number of NIS w/ suitable habitat for each pixel-model-study period. Average across 10 year study period.
+# Intent: Summarize results from reproductive habitat suitability analyses. 
+# For each pixel in our study area, calculate the total number of NIS w/ at least one week of suitable habitat 
+# For each model-study period combination. 
+# Report resuts as median & maximum number of NIS (across all pixels).
 
 # Author: A. Droghini (adroghini@alaska.edu)
 # Last updated: 25 October 2019
 
 #### Start up requirements----
 
-# Load study are extent (Bering Sea shelf)
+## Load study are extent (Bering Sea shelf)
 # Sourcing this will also call init.R script
 source('rCode/00-beringSeaRasterize.R')
 
-# Load reproductive habitat files
+## Load reproductive habitat files
 # The folder contains one file for each taxon-model-study period combination
 ff <- list.files(path=file.path(baseDir, 'rOut', 'Reproduction'), pattern = 'rData')
 
-# Create dataframe----
+#### Create dataframe----
 
 # Make data.frame (output) with details of all .Rdata Repro files (file name, taxa, model, study period)
 # To use as a selection criteria when iterating through files in for loop below
@@ -32,7 +35,8 @@ spp <- unique(output$StudyPeriod)
 taxa <- unique(output$Taxa)
 rm(ff,f,r)
 
-# Process results by study period & model---
+#### Cumulative NIS with at least 1 week reproduction----
+# Process results by study period & model
 # Export cumulative taxa results to rOut/OverallTaxa_Repro folder
 
 # Extract unique study periods (current/future) and models (three ROMS)
