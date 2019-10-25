@@ -36,7 +36,6 @@ The following directory structure must be in place.
 * ..\rOut\SurvivalWeeks_which [for taxa specific SurvivalWeeks_which .Rdata]
 * ..\rOut\OverallTaxa_Year [for year-round suitability results]
 * ..\rOut\Weekly_Survival [for weekly suitability results]
-* ..\rOut\Repro_Plots [for reproduction results]
 
 ## File dependencies
 * Species_Tolerances.csv [This file contains the summary data on temperature and salinity requirements for the marine invasive taxa considered]
