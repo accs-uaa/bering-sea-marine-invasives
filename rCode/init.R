@@ -22,5 +22,5 @@ require(sp)
 
 require(tidyverse)
 
-require(viridis) ## Thanks to Jordan Watson at NOAA for a color ramp that is perceived as uniform across its range.
+require(viridis) ## color ramp that is perceived as uniform across its range.
 				## https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
