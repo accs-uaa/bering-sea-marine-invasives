@@ -26,16 +26,14 @@ The following directory structure must be in place.
 * ..\gis_products\allTaxa\yearlySurvival [for storing final raster results from year-round survival analyses]
 * ..\rCode [contains scripts]
 * ..\rData [contains ROMS data cast as spatialGridDataFrames]
-* ..\plots [for summary plots]
-* ..\plots\taxa\Reproduction [for taxa specific reproductive plots]
-* ..\plots\taxa\Survival [for taxa specific Survival plots]
-* ..\plots\taxa\SurvivalWeeks [for taxa specific SurvivalWeeks plots]
+
 * ..\rOut\Reproduction [for taxa specific Reproduction .Rdata]
 * ..\rOut\Survival [for taxa specific Survival .Rdata]
 * ..\rOut\SurvivalWeeks [for taxa specific SurvivalWeeks .Rdata]
 * ..\rOut\SurvivalWeeks_which [for taxa specific SurvivalWeeks_which .Rdata]
-* ..\rOut\OverallTaxa_Year [for year-round suitability results]
-* ..\rOut\Weekly_Survival [for weekly suitability results]
+* ..\rOut\OverallTaxa_Year [for summary year-round suitability results]
+* ..\rOut\OverallTaxa_Repro [for summary reproductive suitability results]
+* ..\rOut\OverallTaxa_Weekly [for summary weekly suitability results]
 
 ## File dependencies
 * Species_Tolerances.csv [This file contains the summary data on temperature and salinity requirements for the marine invasive taxa considered]
