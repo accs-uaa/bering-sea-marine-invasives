@@ -10,11 +10,14 @@ require(plyr)
 require(doSNOW) ## For parallel processing of the run length encoding function.
 require(dplyr)
 
+require(ggplot2)
+
 require(ncdf4)
 
 require(marmap)
 
 require(raster)
+require(RColorBrewer)
 require(rgdal)
 require(rgeos)
 
