@@ -10,11 +10,8 @@ rm(list=ls())
 
 # Source in required code and packages ----------------------------------------------------
 baseDir <- 'C:/Users/adroghini/Documents/bering-invaders'
-source(file.path(baseDir, '/rCode/04-df_output-weekly_survival_by_latitude.R'))
+source(file.path(baseDir, '/rCode/04-output-weeklySurvivalByLatitude.R'))
 source(file.path(baseDir,'/rCode/functionMultiplot.R'))
-library(tidyverse)
-library(ggplot2)
-library(RColorBrewer)
 
 # Plot mid-century vs current  --------------------------------------------
 
@@ -22,7 +19,7 @@ library(RColorBrewer)
 
 color.pal <- brewer.pal(11,"RdYlBu")[c(11,9,8,7,5,4,2)]
 
-the.breaks<-c(0,6,12,18,24,30,36,43)
+the.breaks<-c(0,6,12,18,24,30,36,42)
 #breaks are (included,excluded]
 the.labels<-c("0 - 6","6 - 12","12 - 18", "18 - 24", "24 - 30","30 - 36", "36 - 42")
 
@@ -33,9 +30,9 @@ plotPeriod <- weeklySurvival %>%
   subset(Week<53 & lat > 51) %>%
   ggplot(aes(weekZero, lat, as.factor(spRichf))) +
   geom_tile(aes(fill = as.factor(spRichf))) +
-  scale_fill_manual(values=color.pal,name="NIS with Suitable Habitat",labels=factor(the.labels)) +
+  scale_fill_manual(values=color.pal,name="NIS with Suitable Conditions",labels=factor(the.labels)) +
   scale_y_continuous(breaks=seq(from=52,to=66,by=2),name="Latitude (°N)",expand=c(0,0))+
-  scale_x_continuous(breaks=seq(from=0,to=50,by=10),name="Time of the Year",expand=c(0,0))+
+  scale_x_continuous(breaks=seq(from=0,to=50,by=10),name="Time of the Year (Weeks / Months)",expand=c(0,0))+
   theme_classic() +
   theme(legend.position = "bottom",
         panel.spacing = unit(2, "lines"), #sets spacing between facet panels
@@ -74,7 +71,7 @@ plotChange <- changeFromCurrent %>%
   scale_fill_manual(values=color.pal,name="Mid-Century Change in NIS",
                     labels=factor(the.labels)) +
   scale_y_continuous(breaks=seq(from=52,to=66,by=2),name="Latitude (°N)",expand=c(0,0))+
-  scale_x_continuous(breaks=seq(from=0,to=50,by=10),name="Time of the Year",expand=c(0,0))+
+  scale_x_continuous(breaks=seq(from=0,to=50,by=10),name="Time of the Year (Weeks / Months)",expand=c(0,0))+
   theme_classic() +
   theme(legend.position = "right",
         panel.grid.major = element_line(size = 0.5, colour = '#00441155'))
@@ -90,3 +87,5 @@ dev.off()
 # Workspace clean-up ------------------------------------------------------
 
 rm(list=ls())
+
+# Addition of month names below the x-axis done in Photoshop.
