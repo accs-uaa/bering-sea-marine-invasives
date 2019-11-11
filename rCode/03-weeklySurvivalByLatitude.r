@@ -26,7 +26,7 @@ plot(shelfRast)
 plot(latGrid, add =T)
 
 # Load taxa data
-# Output from 02-evaluate_habitat_suitability.R
+# Output from 02-evaluateHabitatSuitability.R
 dataDir <- file.path(baseDir, "rOut/SurvivalWeeks_which")
 ff <- list.files(dataDir, full.names = T )
 
