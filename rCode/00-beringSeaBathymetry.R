@@ -22,7 +22,7 @@ bath.r<-projectRaster(from=bath.r.1, res=2000, crs=prj.StudyArea, method="biline
 
 bath200<-rasterToContour(bath.r, levels=-200) # Extract only areas <= 200 m depth
 rgdal::writeOGR(bath200, 'rData', "bath200", driver="ESRI Shapefile") # Export for use in GIS
-save(bath.r, bath200, file=BathymetryDataFile) # Export as .Rdata for use in Rdata
+save(bath.r, bath200, file=BathymetryDataFile) # Export as .Rdata for use in R
 
 unloadNamespace('marmap')
 
