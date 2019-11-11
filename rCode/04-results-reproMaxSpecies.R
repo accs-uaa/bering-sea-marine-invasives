@@ -4,7 +4,7 @@
 # Report resuts as median & maximum number of NIS (across all pixels).
 
 # Author: A. Droghini (adroghini@alaska.edu)
-# Last updated: 25 October 2019
+# Last updated: 11 November 2019
 
 #### Start up requirements----
 
@@ -70,12 +70,21 @@ for(model_i in 1:3){
     
     # Take average across 10 years
     nRepro.avg <- mean(nRepro)
+    plot(nRepro.avg)
   }
-# Export results
+# Export results of individual model predications
+  
+  # As .RData
   name<- paste('Repro_',m,'_', spp[1], '.rData', sep='')	
   fileName <- file.path(file.path(baseDir, 'rOut', 'OverallTaxa_Repro', name))
   save(nRepro.avg, file = fileName)
-  plot(nRepro.avg, main=fileName)
+
+  
+  # As raster
+  nameRaster <- paste('current',m, '.tif', sep='')	
+  fileWrite <- file.path(file.path('C:/Users/adroghini/Documents/bering-invaders/gis_products/allTaxa/Reproduction', nameRaster))
+  writeRaster(nRepro.avg, fileWrite, format = "GTiff",overwrite=TRUE)
+  
   rm(s_OK.Repro,taxon,f,nRepro,name,fileName,nRepro.avg,model_i,i,m,criteria)
 
 }
@@ -103,12 +112,20 @@ for(model_i in 1:3){
     
     # Take average across 10 years
     nRepro.avg <- mean(nRepro)
+    plot(nRepro.avg)
   }
   # Export results
+  
+  # As .Rdata
   name<- paste('Repro_',m,'_', spp[2], '.rData', sep='')	
   fileName <- file.path(file.path(baseDir, 'rOut', 'OverallTaxa_Repro', name))
   save(nRepro.avg, file = fileName)
-  plot(nRepro.avg, main=fileName)
+
+  # As raster
+  nameRaster <- paste('future',m, '.tif', sep='')	
+  fileWrite <- file.path(file.path('C:/Users/adroghini/Documents/bering-invaders/gis_products/allTaxa/Reproduction', nameRaster))
+  writeRaster(nRepro.avg, fileWrite, format = "GTiff",overwrite=TRUE)
+  
   rm(s_OK.Repro,taxon,f,nRepro,name,fileName,nRepro.avg,model_i,i,m,criteria)
   
 }
