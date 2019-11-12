@@ -6,7 +6,7 @@ source('rCode/init.R')
 # Extract to /rData folder
 beringShelf <- readOGR('rData/beringSeaContinentalShelf.shp')
 
-# Load any of the files from 02-evaluate_habitat_suitability.R to serve as a mask
+# Load any of the files from 02-evaluateHabitatSuitability.R to serve as a mask
 ff <- list.files(file.path(baseDir, 'rOut', 'Survival'), pattern = 'rData')
 f=ff[1]
 load(file.path(baseDir, 'rOut', 'Survival', f)) 
