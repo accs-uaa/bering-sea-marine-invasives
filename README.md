@@ -13,7 +13,6 @@ Habitat models and final project report can be accessed on our website: http://w
 # Technologies
 - R (https://www.r-project.org/)
 - R Studio (https://www.rstudio.com/)
-- R Markdown (https://rmarkdown.rstudio.com/)
 - ESRI ArcGIS Desktop 10.5 (https://www.esri.com/en-us/arcgis/about-arcgis/overview)
 
 ## R Packages
