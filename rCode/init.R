@@ -7,6 +7,8 @@ setwd(baseDir)
 
 require(plyr)
 
+require(circlize)
+
 require(doSNOW) ## For parallel processing of the run length encoding function.
 require(dplyr)
 
@@ -24,6 +26,3 @@ require(rgeos)
 require(sp)
 
 require(tidyverse)
-
-require(viridis) ## color ramp that is perceived as uniform across its range.
-				## https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
