@@ -44,4 +44,6 @@ if(!file.exists(BathymetryDataFile)){
 }
 
 # Export as shapefile to generate Figure 1 in ESRI ArcMap
+# Convert SpatialLines to Polygon in ArcMap using "Feature to Polygon" tool with bath2000 and beringSea shapefile as Inputs. The beringSea shapefile is also available on our KNB repository.
 rgdal::writeOGR(bath200, 'rData', "bath200", driver="ESRI Shapefile") 
+
