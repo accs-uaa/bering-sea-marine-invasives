@@ -1,7 +1,7 @@
 # Non-native marine species in Alaska's Bering Sea
 A collaboration between the Alaska Center for Conservation Science (University of Alaska Anchorage), the U.S. Geological Survey Alaska Science Center, and NOAA's Alaska Fisheries Science Center. Major funding was provided by the North Pacific Research Board (project #1523).
 
-**Citation:** Droghini, A., A. S. Fischbach, J. T. Watson, and J. P. Reimer. [In press]. Regional ocean models indicate changing limits to biological invasions in the Bering Sea. 
+**Citation:** Droghini, A., A. S. Fischbach, J. T. Watson, and J. P. Reimer. *[In press]*. Regional ocean models indicate changing limits to biological invasions in the Bering Sea. 
 
 # Project summary
 This repository contains R scripts that predict temperature and salinity suitability for non-native species in the Bering Sea.
