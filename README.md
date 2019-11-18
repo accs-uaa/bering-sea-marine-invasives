@@ -41,8 +41,5 @@ The following directory structure must be in place.
 # Acknowledgements
 Funding for this project was made available by the North Pacific Research Board (project #1523) and the Aleutian and Bering Sea Islands Landscape Conservation Cooperative. Tracey Gotthardt and Aaron Poe were involved with spearheading the project. Casey Greenstein, Lindsey Flagstad, Bonnie Bernard, Jaime Weltfelt, and Curtis Whisman contributed to the development of the ranking system and the species status reports. J.W. thanks Jen Karnak of Marine Exchange of Alaska, who assisted with vessel identification. A.F. thanks Rob Bochenek and Dr. William Koeppen of Axiom Data Science for assistance extracting the ROMS data. A.D. thanks Marcus Geist for his GIS wizarding and Dr. Al Hermann for insightful conversations about the ROMS.
 
-# Contact
-Amanda Droghini, adroghini@alaska.edu
-
 # License
 This repository and its contents are licensed under Creative Commons Attribution-Share Alike.
