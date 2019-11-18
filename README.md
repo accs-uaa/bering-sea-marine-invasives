@@ -46,5 +46,7 @@ This repository and its contents are licensed under Creative Commons Attribution
 
 # Contact
 Amanda Droghini, adroghini@alaska.edu
-Alaska Center for Conservation Science
+
+Alaska Center for Conservation Science,
+
 University of Alaska Anchorage
