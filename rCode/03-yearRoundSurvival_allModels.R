@@ -2,7 +2,7 @@
 ## Intent: Summarize year-round survival suitability across all taxa and across the three ROMS
 ## For a) current and b) mid-century projections.
 ## This script is dependent on outputs from the 02-evaluate_habitat_suitability.R script
-## It also requires the beringSeaContinentalShelf.shp, which can be downloaded at https://accscatalog.uaa.alaska.edu/dataset/resource/ab3f41f1-7dc6-4905-b307-ec99b430ec12
+## It also requires the beringSeaContinentalShelf.shp, which can be downloaded at http://dx.doi.org/10.5063/F1RB72ZR
 
 ## Authors: A.S. Fischbach (afischbach@usgs.gov)
 ##			    A. Droghini (adroghini@alaska.edu)
