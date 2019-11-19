@@ -23,8 +23,10 @@ Install the following R contributed packages: doSNOW, dplyr, ggplot2, marmap, nc
 # File dependencies
 * Species_Tolerances.csv [This file contains the summary data on temperature and salinity requirements for the marine invasive taxa considered]
 * ports.csv [This file contains WGS84 coordinates and IATA abreviations for ports within the study area]
-* beringSeaContinentalShelf.shp [Shapefile of the Bering Sea that determines the extent of our study area. Available [online through the ACCS Catalog](https://accscatalog.uaa.alaska.edu/dataset/resource/ab3f41f1-7dc6-4905-b307-ec99b430ec12)].
+* beringSeaContinentalShelf.shp [Shapefile of the Bering Sea continental shelf that determines the extent of our study area]
 * Files from the Bering 10K ROMS. We obtained the files from [Axiom Data Science](https://www.axiomdatascience.com/contact/)
+
+With the exception of the ROMS files, these data are available on our [data repository](http://dx.doi.org/10.5063/F1RB72ZR).
 
 ## File organization
 The following directory structure must be in place.
