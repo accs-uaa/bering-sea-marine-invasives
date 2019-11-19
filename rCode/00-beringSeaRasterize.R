@@ -2,7 +2,7 @@
 source('rCode/init.R')
 
 # Load shapefile of the Bering Sea continental shelf
-# Available as a .zip file on the ACCS catalog
+# Available as a .zip file at http://dx.doi.org/10.5063/F1RB72ZR
 # Extract to /rData folder
 beringShelf <- readOGR('rData/beringSeaContinentalShelf.shp')
 
