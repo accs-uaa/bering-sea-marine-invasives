@@ -3,7 +3,7 @@ A collaboration between the Alaska Center for Conservation Science (University o
 
 Droghini, A., A. S. Fischbach, J. T. Watson, and J. P. Reimer. Regional ocean models indicate changing limits to biological invasions in the Bering Sea. *Manuscript submitted for publication.*
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3546377.svg)](http://dx.doi.org/10.5281/zenodo.3546377)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3546376.svg)](http://dx.doi.org/10.5281/zenodo.3546376)
 
 # Project summary
 This repository contains R scripts that predict temperature and salinity suitability for non-native species in the Bering Sea.
