@@ -9,9 +9,8 @@
 rm(list=ls())
 
 # Source in required code and packages ----------------------------------------------------
-baseDir <- 'C:/Users/adroghini/Documents/bering-invaders'
-source(file.path(baseDir, '/rCode/04-output-weeklySurvivalByLatitude.R'))
-source(file.path(baseDir,'/rCode/functionMultiplot.R'))
+source('rCode/04-output-weeklySurvivalByLatitude.R')
+source('rCode/functionMultiplot.R')
 
 # Plot mid-century vs current  --------------------------------------------
 
@@ -25,7 +24,7 @@ the.labels<-c("0 - 6","6 - 12","12 - 18", "18 - 24", "24 - 30","30 - 36", "36 - 
 
 plotPeriod <- weeklySurvival %>%
   mutate(spRichf=cut(speciesRichness,breaks=the.breaks),
-         periodf=factor(Period,levels=c(0,1),labels=c("Current (2003-2012)","Mid-Century (2030-2039)")),
+         periodf=factor(Period,levels=c(0,1),labels=c("Recent (2003-2012)","Mid-Century (2030-2039)")),
          weekZero = Week - 1) %>%
   subset(Week<53 & lat > 51) %>%
   ggplot(aes(weekZero, lat, as.factor(spRichf))) +
@@ -45,13 +44,13 @@ rm(color.pal,the.breaks,the.labels)
 
 # Wow, who would have thought I would use Reddit to solve my R issues...: https://www.reddit.com/r/rstats/comments/3pgjgj/how_to_create_a_new_column_whose_value_is_the/
 
-changeFromCurrent <- weeklySurvival %>%
+changeFromRecent <- weeklySurvival %>%
   group_by(lat, Week) %>% # Only compare within a Week-latitude
   arrange(Week,lat) %>% # Arrange such that values for Mid-century come right after Current
   mutate(change = speciesRichness - lag(speciesRichness, 1)) %>%  # subtract Current value from Mid-century value
   filter(!is.na(change))  # Drop NAs (Current rows have no change value)
 
-summary(changeFromCurrent)
+summary(changeFromRecent)
 # Max value is 7, Minimum is -8.3
 # Most latitudes predict no change
 
@@ -63,7 +62,7 @@ the.breaks<-c(-10,-0.34,0.34,8) # Considering 0 (no change) to be any value betw
 
 the.labels<-c("Fewer NIS","No Change","More NIS")
 
-plotChange <- changeFromCurrent %>%
+plotChange <- changeFromRecent %>%
   mutate(spRichf=cut(change,breaks=the.breaks), weekZero=Week-1) %>%
   subset(Week < 52 & lat > 51) %>%
   ggplot(aes(weekZero, lat, as.factor(spRichf))) +
